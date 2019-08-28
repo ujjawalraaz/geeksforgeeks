@@ -1,0 +1,29 @@
+#include<iostream>
+#include<bits/stdc++.h>
+#define ll long long int
+using namespace std;
+int main()
+ {
+	//code
+	ll t;
+	cin>>t;
+	while(t--)
+	{
+	    ll p;
+	    cin>>p;
+	    ll low=1;
+	    ll high=floor(sqrt(p));
+	    ll mid;
+	    while(low<=high)
+	    {
+	        mid=low+(high-low)/2;
+	        ll n=((mid)*(mid+1)*((2*mid)+1))/6;
+	        if(n<p)
+	        low=mid+1;
+	        else
+	        high=mid-1;
+	    }
+	    cout<<high<<endl;
+	}
+	return 0;
+}
