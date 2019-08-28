@@ -1,0 +1,41 @@
+#include<iostream>
+#define ll long long int
+using namespace std;
+ll sum(ll a)
+{
+    ll c=0;
+    while(a)
+    {
+        int r=a%10;
+        c=c+r;
+        a=a/10;
+    }
+    return(c);
+}
+
+int main()
+ {
+	//code
+	ll t;
+	cin>>t;
+	while(t--)
+	{
+	    ll n,k;
+	    cin>>n>>k;
+	    ll low=0;
+	    ll high=n;
+	    ll mid;
+	    while(low<=high)
+	    {
+	        mid=low+(high-low)/2;
+	        ll s1=sum(mid);
+	        ll m=mid-s1;
+	        if(m>=k)
+	        high=mid-1;
+	        else
+	        low=mid+1;
+	    }
+	    cout<<n-high<<endl;
+	}
+	return 0;
+}
