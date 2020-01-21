@@ -1,0 +1,45 @@
+//codechef question:https://www.codechef.com/problems/COMPILER
+
+
+#include<iostream>
+#include<stack>
+#define ll long long int
+using namespace std;
+int main()
+{
+    ll t;
+    cin>>t;
+    while(t--)
+    {
+        string str;
+        cin>>str;
+        stack<char> s1;
+        ll count=0,count1=0,ans=0;
+        for(ll i=0;i<str.size();i++)
+        {
+            if(str[i]=='<')
+            {
+                count++;
+                s1.push(str[i]);
+            }
+            else
+            {
+                if(!s1.empty()&&s1.top()=='<')
+                {
+                    s1.pop();
+                    count1++;
+                    if(count==count1)
+                    {
+                        ans=ans+count+count1;
+                        count=0;
+                        count1=0;
+                    }
+                }
+                else
+                break;
+            }
+        }
+        cout<<ans<<endl;
+    }
+    return(0);
+}
