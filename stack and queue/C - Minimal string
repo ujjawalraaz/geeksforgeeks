@@ -1,0 +1,48 @@
+//qs link:https://codeforces.com/contest/797/problem/C
+
+#include<iostream>
+#include<stack>
+#include<algorithm>
+#define ll long long int
+using namespace std;
+int main()
+{
+    string str,str1;
+    cin>>str;
+    str1=str;
+    ll arr[26]={0};
+    for(int i=0;i<str.size();i++)
+    arr[str[i]-'a']++;
+    stack<char> s1;
+    for(int i=0;i<str.size();i++)
+    {
+        if(s1.empty())
+        s1.push(str[i]);
+        else
+        {
+            char min;
+
+            ll j=0;
+            for(j=0;j<26;j++)
+            if(arr[j]>0)
+            break;
+            min='a'+j;
+            
+            while(!s1.empty()&&s1.top()<=min)
+            {
+                cout<<s1.top();
+                s1.pop();
+            }
+            s1.push(str[i]);
+           //   str1=str;
+        }
+        arr[str[i]-'a']--;
+    }
+    while(!s1.empty())
+    {
+        cout<<s1.top();
+        s1.pop();
+    }
+    cout<<endl;
+    return(0);
+}
