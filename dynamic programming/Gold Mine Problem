@@ -1,0 +1,51 @@
+
+
+//qs link:https://practice.geeksforgeeks.org/problems/gold-mine-problem/0
+
+
+
+#include<iostream>
+#define ll long long int
+using namespace std;
+ll N,M;
+ll arr[25][25];
+ll dp[25][25];
+ll max(ll a,ll b,ll c)
+{
+    return(max(a,max(b,c)));
+}
+ll func(ll r,ll c)
+{
+    if(r>=N||c>=M||r<0)
+    return(0);
+    if(dp[r][c]!=-1)
+    return(dp[r][c]);
+    else
+    return(dp[r][c]=max(arr[r][c]+func(r-1,c+1),arr[r][c]+func(r,c+1),arr[r][c]+func(r+1,c+1)));
+    
+}
+
+int main()
+{
+    ll t;
+    cin>>t;
+    while(t--)
+    {
+        cin>>N>>M;
+        for(ll i=0;i<N;i++)
+        for(ll j=0;j<M;j++)
+        cin>>arr[i][j];
+        for(ll i=0;i<=N;i++)
+        for(ll j=0;j<=M;j++)
+        dp[i][j]=-1;
+        ll m1=-1e15;
+        for(ll i=0;i<N;i++)
+        {
+            ll res=func(i,0);
+            if(res>m1)
+            m1=res;
+        }
+        cout<<m1<<endl;
+    }
+    return(0);
+}
